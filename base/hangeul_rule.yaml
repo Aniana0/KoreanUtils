@@ -2,13 +2,13 @@ hangeul:
   const:
     first_jamo_code: 12593 # ㄱ
     last_jamo_code: 12622  # ㅎ
-    first_hangul_code: 44032 # 가
-    last_hangul_code: 55203 # 힣
+    first_hangeul_code: 44032 # 가
+    last_hangeul_code: 55203 # 힣
     choseong_count: 19
     jungseong_count: 21
     jongseong_count: 28
     choseong_step_count: 588 # 초성 1개가 가지는 조합 수
-    total_hangul_count: 11172
+    total_hangeul_count: 11172
   special_words:
     exception_jongseong11:
     - 밟
