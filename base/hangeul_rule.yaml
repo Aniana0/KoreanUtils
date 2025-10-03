@@ -1,0 +1,697 @@
+hangeul:
+  const:
+    first_jamo_code: 12593 # ㄱ
+    last_jamo_code: 12622  # ㅎ
+    first_hangul_code: 44032 # 가
+    last_hangul_code: 55203 # 힣
+    choseong_count: 19
+    jungseong_count: 21
+    jongseong_count: 28
+    choseong_step_count: 588 # 초성 1개가 가지는 조합 수
+    total_hangul_count: 11172
+  special_words:
+    exception_jongseong11:
+    - 밟
+    - 넓죽
+    - 넓둥
+    forced_jungseong7:
+    - 예
+    - 례
+    sound_of_exception_words:
+      디귿이: 디그시
+      디귿을: 디그슬
+      디귿에: 디그세
+      지읒이: 지으시
+      지읒을: 지으슬
+      지읒에: 지으세
+      치읓이: 치으시
+      치읓을: 치으슬
+      치읓에: 치으세
+      키읔이: 키으기
+      키읔을: 키으글
+      키읔에: 키으게
+      티읕이: 티으시
+      티읕을: 티으슬
+      티읕에: 티으세
+      피읖이: 피으비
+      피읖을: 피으블
+      피읖에: 피으베
+      히읗이: 히으시
+      히읗을: 히으슬
+      히읗에: 히으세
+      의견란: 의견난
+      임진란: 임진난
+      생산량: 생산냥
+      결단력: 결딴녁
+      공권력: 공꿘녁
+      동원령: 동원녕
+      상견례: 상견녜
+      횡단로: 횡단노
+      이원론: 이원논
+      입원료: 이붠뇨
+      구근류: 구근뉴
+      육이오: 유기오
+      삼일절: 사밀쩔
+      송별연: 송벼련
+      등용문: 등용문
+jamo:
+  arrays:
+    choseong:
+    - ㄱ
+    - ㄲ
+    - ㄴ
+    - ㄷ
+    - ㄸ
+    - ㄹ
+    - ㅁ
+    - ㅂ
+    - ㅃ
+    - ㅅ
+    - ㅆ
+    - ㅇ
+    - ㅈ
+    - ㅉ
+    - ㅊ
+    - ㅋ
+    - ㅌ
+    - ㅍ
+    - ㅎ
+    jungseong:
+    - ㅏ
+    - ㅐ
+    - ㅑ
+    - ㅒ
+    - ㅓ
+    - ㅔ
+    - ㅕ
+    - ㅖ
+    - ㅗ
+    - ㅘ
+    - ㅙ
+    - ㅚ
+    - ㅛ
+    - ㅜ
+    - ㅝ
+    - ㅞ
+    - ㅟ
+    - ㅠ
+    - ㅡ
+    - ㅢ
+    - ㅣ
+    jongseong:
+    - ''
+    - ㄱ
+    - ㄲ
+    - ㄳ
+    - ㄴ
+    - ㄵ
+    - ㄶ
+    - ㄷ
+    - ㄹ
+    - ㄺ
+    - ㄻ
+    - ㄼ
+    - ㄽ
+    - ㄾ
+    - ㄿ
+    - ㅀ
+    - ㅁ
+    - ㅂ
+    - ㅄ
+    - ㅅ
+    - ㅆ
+    - ㅇ
+    - ㅈ
+    - ㅊ
+    - ㅋ
+    - ㅌ
+    - ㅍ
+    - ㅎ
+  properties:
+    choseong:
+      ㄱ:
+        order: 0
+        type:
+        - plain
+        - gap
+        - unvoiced
+        forms:
+          default: ㄱ
+          plain: ㄱ
+          tense: ㄲ
+          aspirated: ㅋ
+      ㄲ:
+        order: 1
+        type:
+        - tense
+        - gap
+        - unvoiced
+        forms:
+          default: ㄲ
+          plain: ㄱ
+          tense: ㄲ
+          aspirated: ㅋ
+      ㄴ:
+        order: 2
+        type:
+        - nasal
+        - hold
+        - voiced
+        forms:
+          default: ㄴ
+          nasal: ㄴ
+          liquid: ㄹ
+      ㄷ:
+        order: 3
+        type:
+        - plain
+        - gap
+        - unvoiced
+        forms:
+          default: ㄷ
+          plain: ㄷ
+          tense: ㄸ
+          aspirated: ㅌ
+      ㄸ:
+        order: 4
+        type:
+        - tense
+        - gap
+        - unvoiced
+        forms:
+          default: ㄸ
+          plain: ㄷ
+          tense: ㄸ
+          aspirated: ㅌ
+      ㄹ:
+        order: 5
+        type:
+        - liquid
+        - hold
+        - voiced
+        forms:
+          default: ㄹ
+          liquid: ㄹ
+          nasal: ㄴ
+      ㅁ:
+        order: 6
+        type:
+        - nasal
+        - hold
+        - voiced
+        forms:
+          default: ㅁ
+          nasal: ㅁ
+      ㅂ:
+        order: 7
+        type:
+        - plain
+        - gap
+        - unvoiced
+        forms:
+          default: ㅂ
+          plain: ㅂ
+          tense: ㅃ
+          aspirated: ㅍ
+      ㅃ:
+        order: 8
+        type:
+        - tense
+        - gap
+        - unvoiced
+        forms:
+          default: ㅃ
+          plain: ㅂ
+          tense: ㅃ
+          aspirated: ㅍ
+      ㅅ:
+        order: 9
+        type:
+        - plain
+        - hold
+        - unvoiced
+        forms:
+          default: ㅅ
+          plain: ㅅ
+          tense: ㅆ
+      ㅆ:
+        order: 10
+        type:
+        - tense
+        - hold
+        - unvoiced
+        forms:
+          default: ㅆ
+          plain: ㅅ
+          tense: ㅆ
+      ㅇ:
+        order: 11
+        type:
+        - silent
+        forms:
+          default: ㅇ
+          silent: ㅇ
+      ㅈ:
+        order: 12
+        type:
+        - plain
+        - gap
+        - unvoiced
+        forms:
+          default: ㅈ
+          plain: ㅈ
+          tense: ㅉ
+          aspirated: ㅊ
+      ㅉ:
+        order: 13
+        type:
+        - tense
+        - gap
+        - unvoiced
+        forms:
+          default: ㅉ
+          plain: ㅈ
+          tense: ㅉ
+          aspirated: ㅊ
+      ㅊ:
+        order: 14
+        type:
+        - aspirated
+        - gap
+        - unvoiced
+        forms:
+          default: ㅊ
+          plain: ㅈ
+          tense: ㅉ
+          aspirated: ㅊ
+      ㅋ:
+        order: 15
+        type:
+        - aspirated
+        - gap
+        - unvoiced
+        forms:
+          default: ㅋ
+          plain: ㄱ
+          tense: ㄲ
+          aspirated: ㅋ
+      ㅌ:
+        order: 16
+        type:
+        - aspirated
+        - gap
+        - unvoiced
+        forms:
+          default: ㅌ
+          plain: ㄷ
+          tense: ㄸ
+          aspirated: ㅌ
+      ㅍ:
+        order: 17
+        type:
+        - aspirated
+        - gap
+        - unvoiced
+        forms:
+          default: ㅍ
+          plain: ㅂ
+          tense: ㅃ
+          aspirated: ㅍ
+      ㅎ:
+        order: 18
+        type:
+        - special
+        - hold
+        - unvoiced
+        forms:
+          default: ㅎ
+    jungseong:
+      ㅏ:
+        order: 0
+        type: single
+        forms:
+          hold_vowel: ㅏ
+      ㅐ:
+        order: 1
+        type: single
+        forms:
+          hold_vowel: ㅐ
+      ㅑ:
+        order: 2
+        type: double
+        forms:
+          semi_vowel: ㅣ
+          hold_vowel: ㅏ
+          sound_order: semi-vowel
+      ㅒ:
+        order: 3
+        type: double
+        forms:
+          semi_vowel: ㅣ
+          hold_vowel: ㅐ
+          sound_order: semi-vowel
+      ㅓ:
+        order: 4
+        type: single
+        forms:
+          hold_vowel: ㅓ
+      ㅔ:
+        order: 5
+        type: single
+        forms:
+          hold_vowel: ㅔ
+      ㅕ:
+        order: 6
+        type: double
+        forms:
+          semi_vowel: ㅣ
+          hold_vowel: ㅓ
+          sound_order: semi-vowel
+      ㅖ:
+        order: 7
+        type: double
+        forms:
+          semi_vowel: ㅣ
+          hold_vowel: ㅔ
+          sound_order: semi-vowel
+      ㅗ:
+        order: 8
+        type: single
+        forms:
+          hold_vowel: ㅗ
+      ㅘ:
+        order: 9
+        type: double
+        forms:
+          semi_vowel: ㅗ
+          hold_vowel: ㅏ
+          sound_order: semi-vowel
+      ㅙ:
+        order: 10
+        type: double
+        forms:
+          semi_vowel: ㅗ
+          hold_vowel: ㅐ
+          sound_order: semi-vowel
+      ㅚ:
+        order: 11
+        type: mix
+        forms:
+          semi_vowel: ㅗ
+          hold_vowel: ㅐ
+          sound_order: semi-vowel
+      ㅛ:
+        order: 12
+        type: double
+        forms:
+          semi_vowel: ㅣ
+          hold_vowel: ㅗ
+          sound_order: semi-vowel
+      ㅜ:
+        order: 13
+        type: single
+        forms:
+          hold_vowel: ㅜ
+      ㅝ:
+        order: 14
+        type: double
+        forms:
+          semi_vowel: ㅜ
+          hold_vowel: ㅓ
+          sound_order: semi-vowel
+      ㅞ:
+        order: 15
+        type: double
+        forms:
+          semi_vowel: ㅜ
+          hold_vowel: ㅔ
+          sound_order: semi-vowel
+      ㅟ:
+        order: 16
+        type: mix
+        forms:
+          semi_vowel: ㅜ
+          hold_vowel: ㅣ
+          sound_order: semi-vowel
+      ㅠ:
+        order: 17
+        type: double
+        forms:
+          semi_vowel: ㅣ
+          hold_vowel: ㅜ
+          sound_order: semi-vowel
+      ㅡ:
+        order: 18
+        type: single
+        forms:
+          hold_vowel: ㅡ
+      ㅢ:
+        order: 19
+        type: double
+        forms:
+          semi_vowel: ㅣ
+          hold_vowel: ㅡ
+          sound_order: vowel-semi
+      ㅣ:
+        order: 20
+        type: single
+        forms:
+          hold_vowel: ㅣ
+    jongseong:
+      ㄱ:
+        order: 1
+        type:
+        - single
+        - realized
+        - tense
+        - gap
+        - nasal
+        forms:
+          default: ㄱ
+          voiced: ㅇ
+      ㄲ:
+        order: 2
+        type:
+        - double
+        - tense
+        forms:
+          default: ㄱ
+          prev: ㄱ
+          next: ㄱ
+      ㄳ:
+        order: 3
+        type:
+        - mix
+        - tense
+        forms:
+          default: ㄱ
+          prev: ㄱ
+          next: ㅅ
+      ㄴ:
+        order: 4
+        type:
+        - single
+        - realized
+        - voiced
+        forms:
+          default: ㄴ
+          liquid: ㄹ
+      ㄵ:
+        order: 5
+        type:
+        - mix
+        - tense
+        forms:
+          default: ㄴ
+          prev: ㄴ
+          next: ㅈ
+      ㄶ:
+        order: 6
+        type:
+        - mix
+        - aspirated
+        forms:
+          default: ㄴ
+          prev: ㄴ
+          next: ㅎ
+      ㄷ:
+        order: 7
+        type:
+        - single
+        - realized
+        - tense
+        - gap
+        - palatalization
+        forms:
+          default: ㄷ
+          voiced: ㄴ
+      ㄹ:
+        order: 8
+        type:
+        - single
+        - realized
+        - voiced
+        - liquid
+        forms:
+          default: ㄹ
+      ㄺ:
+        order: 9
+        type:
+        - mix
+        - tense
+        forms:
+          default: ㄹ
+          prev: ㄹ
+          next: ㄱ
+      ㄻ:
+        order: 10
+        type:
+        - mix
+        forms:
+          default: ㄹ
+          prev: ㄹ
+          next: ㅁ
+      ㄼ:
+        order: 11
+        type:
+        - mix
+        - tense
+        forms:
+          default: ㄹ
+          prev: ㄹ
+          next: ㅂ
+      ㄽ:
+        order: 12
+        type:
+        - mix
+        - tense
+        forms:
+          default: ㄹ
+          prev: ㄹ
+          next: ㅅ
+      ㄾ:
+        order: 13
+        type:
+        - mix
+        - tense
+        - palatalization
+        forms:
+          default: ㄹ
+          prev: ㄹ
+          next: ㅌ
+      ㄿ:
+        order: 14
+        type:
+        - mix
+        - tense
+        forms:
+          default: ㄹ
+          prev: ㄹ
+          next: ㅍ
+      ㅀ:
+        order: 15
+        type:
+        - mix
+        - aspirated
+        forms:
+          default: ㄹ
+          prev: ㄹ
+          next: ㅎ
+      ㅁ:
+        order: 16
+        type:
+        - single
+        - realized
+        - voiced
+        - nasal
+        forms:
+          default: ㅁ
+      ㅂ:
+        order: 17
+        type:
+        - single
+        - realized
+        - tense
+        - gap
+        - nasal
+        forms:
+          default: ㅂ
+          voiced: ㅁ
+      ㅄ:
+        order: 18
+        type:
+        - mix
+        - tense
+        forms:
+          default: ㅂ
+          prev: ㅂ
+          next: ㅅ
+      ㅅ:
+        order: 19
+        type:
+        - single
+        - tense
+        forms:
+          default: ㄷ
+      ㅆ:
+        order: 20
+        type:
+        - double
+        - tense
+        forms:
+          default: ㅅ
+          prev: ㅅ
+          next: ㅅ
+      ㅇ:
+        order: 21
+        type:
+        - single
+        - realized
+        - voiced
+        - keep
+        - nasal
+        forms:
+          voiced: ㅇ
+      ㅈ:
+        order: 22
+        type:
+        - single
+        - tense
+        forms:
+          default: ㄷ
+      ㅊ:
+        order: 23
+        type:
+        - single
+        - tense
+        forms:
+          default: ㄷ
+      ㅋ:
+        order: 24
+        type:
+        - single
+        - tense
+        forms:
+          default: ㄱ
+      ㅌ:
+        order: 25
+        type:
+        - single
+        - tense
+        - palatalization
+        forms:
+          default: ㄷ
+      ㅍ:
+        order: 26
+        type:
+        - single
+        - tense
+        forms:
+          default: ㅂ
+      ㅎ:
+        order: 27
+        type:
+        - single
+        - aspirated
+        forms:
+          default: ㄷ
