@@ -1,0 +1,492 @@
+consonant:
+  'ㄱ':
+    tag:
+    - choseong
+    - jongseong
+    - plain # 예사소리
+    - single # 홑받침
+    - default # 대표음 받침
+    - plain-to-tense # 예사소리를 된소리로 바꿈
+    - l-to-n # ㄹ을 ㄴ으로 바꿈
+    - unvoiced # 무성음
+    - gap # 초성의 길이가 늘어날 때 공백구간이 늘어남
+    - break # 종성의 길이가 늘어 날 때 공백구간이 늘어남
+    forms:
+        tense: 'ㄲ'
+        aspirated: 'ㅋ'
+        default: 'ㄱ'
+        nasal: 'ㅇ'
+  'ㄲ':
+    tag:
+    - choseong
+    - jongseong
+    - tense
+    - double
+    - plain-to-tense
+    - unvoiced
+    - gap
+    forms:
+        default: 'ㄱ'
+        prev: 'ㄱ'
+        next: 'ㄱ'
+  'ㄳ':
+    tag:
+    - jongseong
+    - mix
+    - plain-to-tense
+    forms:
+        default: 'ㄱ'
+        prev: 'ㄱ'
+        next: 'ㅅ'
+  'ㄴ':
+    tag:
+    - choseong
+    - jongseong
+    - nasal
+    - single
+    - default
+    - jongseong-to-nasal # ㄱ,ㄷ,ㅂ 받침을 비음으로 바꿈
+    - voiced # 유성음
+    - hold # 초성의 길이가 늘어날 때 자음 길이가 늘어남
+    - keep # 종성의 길이가 늘어 날 때 받침 길이가 늘어남
+    forms:
+        liquid: 'ㄹ'
+        default: 'ㄴ'
+  'ㄵ':
+    tag:
+    - jongseong
+    - mix
+    - plain-to-tense
+    forms:
+        default: 'ㄴ'
+        prev: 'ㄴ'
+        next: 'ㅈ'
+  'ㄶ':
+    tag:
+    - jongseong
+    - mix
+    - plain-to-aspirated
+    forms:
+        default: 'ㄴ'
+        prev: 'ㄴ'
+        next: 'ㅎ'
+  'ㄷ':
+    tag:
+    - choseong
+    - jongseong
+    - plain
+    - single
+    - default
+    - plain-to-tense
+    - l-to-n
+    - palatalization
+    - unvoiced
+    - gap
+    - break
+    forms:
+        tense: 'ㄸ'
+        aspirated: 'ㅌ'
+        default: 'ㄷ'
+        nasal: 'ㄴ'
+        palatalization: 'ㅈ'
+  'ㄸ':
+    tag:
+    - choseong
+    - tense
+    - unvoiced
+    - gap
+    forms:
+  'ㄹ':
+    tag:
+    - choseong
+    - jongseong
+    - liquid
+    - single
+    - default
+    - n-to-l
+    - jongseong-to-nasal
+    - voiced
+    - hold
+    - keep
+    forms:
+        nasal: 'ㄴ'
+        default: 'ㄹ'
+  'ㄺ':
+    tag:
+    - jongseong
+    - mix
+    - plain-to-tense
+    forms:
+        default: 'ㄱ'
+        prev: 'ㄹ'
+        next: 'ㄱ'
+  'ㄻ':
+    tag:
+    - jongseong
+    - mix
+    forms:
+        default: 'ㅁ'
+        prev: 'ㄹ'
+        next: 'ㅁ'
+  'ㄼ':
+    tag:
+        - jongseong
+        - mix
+        - plain-to-tense
+    forms:
+        default: 'ㅂ'
+        prev: 'ㄹ'
+        next: 'ㅂ'
+  'ㄽ':
+    tag:
+        - jongseong
+        - mix
+        - plain-to-tense
+    forms:
+        default: 'ㄹ'
+        prev: 'ㄹ'
+        next: 'ㄽ'
+  'ㄾ':
+    tag:
+        - jongseong
+        - mix
+        - plain-to-tense
+        - palatalization
+    forms:
+        default: 'ㄹ'
+        prev: 'ㄹ'
+        next: 'ㅌ'
+        palatalization: 'ㅊ'
+  'ㄿ':
+    tag:
+    - jongseong
+    - mix
+    - plain-to-tense
+    forms:
+        default: 'ㅂ'
+        prev: 'ㄹ'
+        next: 'ㅍ'
+  'ㅀ':
+    tag:
+    - jongseong
+    - mix
+    - plain-to-aspirated
+    forms:
+        default: 'ㄹ'
+        prev: 'ㄹ'
+        next: 'ㅎ'
+  'ㅁ':
+    tag:
+    - choseong
+    - jongseong
+    - nasal
+    - single
+    - default
+    - jongseong-to-nasal
+    - voiced
+    - hold
+    - keep
+    forms:
+      default: 'ㅁ'
+  'ㅂ':
+    tag:
+    - choseong
+    - jongseong
+    - plain
+    - single
+    - default
+    - plain-to-tense
+    - l-to-n
+    - unvoiced
+    - gap
+    - break
+    forms:
+        tense: 'ㅃ'
+        aspirated: 'ㅍ'
+        default: 'ㅂ'
+        nasal: 'ㅁ'
+  'ㅃ':
+    tag:
+    - choseong
+    - tense
+    - unvoiced
+    - gap
+    forms:
+  'ㅄ':
+    tag:
+    - jongseong
+    - mix
+    - plain-to-tense
+    forms:
+        default: 'ㅂ'
+        prev: 'ㅂ'
+        next: 'ㅅ'
+  'ㅅ':
+    tag:
+    - choseong
+    - jongseong
+    - plain
+    - single
+    - plain-to-tense
+    - unvoiced
+    - hold
+    forms:
+        tense: 'ㅆ'
+        default : 'ㄷ'
+  'ㅆ':
+    tag:
+    - choseong
+    - jongseong
+    - tense
+    - double
+    - plain-to-tense
+    - unvoiced
+    - hold
+    forms:
+        default: 'ㄷ'
+        prev: 'ㅅ'
+        next: 'ㅅ'
+  'ㅇ':
+    tag:
+    - choseong
+    - jongseong
+    - silent
+    - single
+    - default
+    - voiced
+    - keep
+    forms:
+        default: 'ㅇ'
+  'ㅈ':
+    tag:
+    - choseong
+    - jongseong
+    - plain
+    - single
+    - plain-to-tense
+    - unvoiced
+    - del-y
+    - gap
+    forms:
+        tense: 'ㅉ'
+        aspirated: 'ㅊ'
+        default: 'ㄷ'
+  'ㅉ':
+    tag:
+    - choseong
+    - tense
+    - unvoiced
+    - del-y
+    - gap
+    forms:
+  'ㅊ':
+    tag:
+    - choseong
+    - jongseong
+    - aspirated
+    - single
+    - plain-to-tense
+    - unvoiced
+    - del-y
+    - gap
+    forms:
+    default: 'ㄷ'
+  'ㅋ':
+    tag:
+    - choseong
+    - jongseong
+    - aspirated
+    - single
+    - plain-to-tense
+    - unvoiced
+    - gap
+    forms:
+        default: 'ㄱ'
+  'ㅌ':
+    tag:
+    - choseong
+    - jongseong
+    - aspirated
+    - single
+    - plain-to-tense
+    - palatalization
+    - unvoiced
+    - gap
+    forms:
+        default: 'ㄷ'
+        palatalization: 'ㅊ'
+  'ㅍ':
+    tag:
+    - choseong
+    - jongseong
+    - aspirated
+    - single
+    - plain-to-tense
+    - unvoiced
+    - gap
+    forms:
+        default: 'ㅂ'
+  'ㅎ':
+    tag:
+    - choseong
+    - jongseong
+    - aspirated
+    - single
+    - jongseong-to-aspirated
+    - plain-to-aspirated
+    - unvoiced
+    - hold
+    forms:
+        default: 'ㄷ'
+vowel:
+  'ㅏ':
+    main_vowel: 'ㅏ'
+    tag:
+    - single
+  'ㅐ':
+    main_vowel: 'ㅐ'
+    tag:
+    - single
+    - group-e
+  'ㅑ':
+    main_vowel: 'ㅏ'
+    semi_vowel: 'ㅣ'
+    tag:
+    - double
+    - semi-vowel
+    - group-y
+    - palatalization
+  'ㅒ':
+    main_vowel: 'ㅐ'
+    semi_vowel: 'ㅣ'
+    tag:
+    - double
+    - semi-vowel
+    - group-e
+    - group-y
+    - palatalization
+  'ㅓ':
+    main_vowel: 'ㅓ'
+    tag:
+    - single
+  'ㅔ':
+    main_vowel: 'ㅔ'
+    tag:
+    - single
+    - group-e
+  'ㅕ':
+    main_vowel: 'ㅓ'
+    semi_vowel: 'ㅣ'
+    tag:
+    - double
+    - semi-vowel
+    - group-y
+    - palatalization
+  'ㅖ':
+    main_vowel: 'ㅔ'
+    semi_vowel: 'ㅣ'
+    tag:
+    - double
+    - semi-vowel
+    - group-e
+    - group-w
+    - palatalization
+  'ㅗ':
+    main_vowel: 'ㅗ'
+    tag:
+    - single
+    - labialization
+  'ㅘ':
+    main_vowel: 'ㅏ'
+    semi_vowel: 'ㅗ'
+    tag:
+    - double
+    - semi-vowel
+    - group-w
+    - labialization
+  'ㅙ':
+    main_vowel: 'ㅐ'
+    semi_vowel: 'ㅗ'
+    tag:
+    - double
+    - semi-vowel
+    - group-e
+    - group-w
+    - labialization
+  'ㅚ':
+    main_vowel: 'ㅚ'
+    semi_vowel: 'ㅗ'
+    hold_vowel: 'ㅐ'
+    tag:
+    - single
+    - double
+    - semi-vowel
+    - group-e
+    - group-w
+    - labialization
+  'ㅛ':
+    main_vowel: 'ㅗ'
+    semi_vowel: 'ㅟ'
+    tag:
+    - double
+    - semi-vowel
+    - group-y
+    - palatalization
+    - labialization
+  'ㅜ':
+    main_vowel: 'ㅜ'
+    tag:
+    - single
+    - labialization
+  'ㅝ':
+    main_vowel: 'ㅓ'
+    semi_vowel: 'ㅜ'
+    tag:
+    - double
+    - semi-vowel
+    - group-w
+    - labialization
+  'ㅞ':
+    main_vowel: 'ㅔ'
+    semi_vowel: 'ㅜ'
+    tag:
+    - double
+    - semi-vowel
+    - group-e
+    - group-w
+    - labialization
+  'ㅟ':
+    main_vowel: 'ㅟ'
+    semi_vowel: 'ㅟ'
+    hold_vowel: 'ㅣ'
+    tag:
+    - single
+    - double
+    - semi-vowel
+    - group-w
+    - palatalization
+    - labialization
+  'ㅠ':
+    main_vowel: 'ㅜ'
+    semi_vowel: 'ㅟ'
+    tag:
+    - double
+    - semi-vowel
+    - group-y
+    - palatalization
+    - labialization
+  'ㅡ':
+    main_vowel: 'ㅡ'
+    tag:
+    - single
+  'ㅢ':
+    main_vowel: 'ㅡ'
+    semi_vowel: 'ㅣ'
+    tag:
+    - double
+    - vowel-semi
+  'ㅣ':
+    main_vowel: 'ㅣ'
+    tag:
+    - single
+    - palatalization

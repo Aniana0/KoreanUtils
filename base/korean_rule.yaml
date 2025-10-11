@@ -1,0 +1,13 @@
+exception_jongseong11:
+- 밟
+- 넓죽
+- 넓둥
+forced_jungseong7:
+- '예'
+- '례'
+rule15_vowels:
+- 'ㅏ'
+- 'ㅓ'
+- 'ㅗ'
+- 'ㅜ'
+- 'ㅟ'
