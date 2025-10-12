@@ -31,6 +31,8 @@ namespace KoreanUtils
             {
                 int sliceStartIndex = targetEndIndex - (word.Length - 1);
                 int sliceEndIndex = targetStartIndex + (word.Length - 1);
+                if (sliceStartIndex < 0) sliceStartIndex = 0;
+                if (sliceEndIndex > text.Length) sliceEndIndex = text.Length;
                 if (targetEndIndex > sliceEndIndex) continue;
                 string textSelection = text[sliceStartIndex..sliceEndIndex];
                 if (textSelection.Contains(word))
@@ -62,8 +64,8 @@ namespace KoreanUtils
             // 앞 뒤 한 글자만 남기기
             char? prevChar = null;
             char? nextChar = null;
-            if ((isStartOfExceptionWord || !isExceptionWord) && prev?.Length > 0) prevChar = prev[^1];
-            if ((isEndOfExceptionWord || !isExceptionWord) && next?.Length > 0) nextChar = next[0];
+            if (!isStartOfExceptionWord && prev?.Length > 0) prevChar = prev[^1];
+            if (!isEndOfExceptionWord && next?.Length > 0) nextChar = next[0];
             var prevJamo = prevChar != null && HangeulUtils.IsHangeul(prevChar) ? HangeulUtils.ToJamo(prevChar.Value) : null;
             var nextJamo = nextChar != null && HangeulUtils.IsHangeul(nextChar) ? HangeulUtils.ToJamo(nextChar.Value) : null;
 
