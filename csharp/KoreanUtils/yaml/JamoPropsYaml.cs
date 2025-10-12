@@ -5,8 +5,8 @@ namespace KoreanUtils
     /// </summary>
     public class JamoPropsYaml
     {
-        public Dictionary<string, ConsonantProps> Consonant { get; private set; } = null!;
-        public Dictionary<string, VowelProps> Vowel { get; private set; } = null!;
+        public Dictionary<char, ConsonantProps> Consonant { get; private set; } = null!;
+        public Dictionary<char, VowelProps> Vowel { get; private set; } = null!;
     }
 
     public class ConsonantProps
@@ -18,21 +18,21 @@ namespace KoreanUtils
 
     public class VowelProps
     {
-        public string? MainVowel { get; init; }
-        public string? SemiVowel { get; init; }
-        public string? HoldVowel { get; init; }
+        public char MainVowel { get; init; }
+        public char? SemiVowel { get; init; }
+        public char? HoldVowel { get; init; }
         public HashSet<string> Tag { get; init; } = new();
     }
     
     public class ConsonantForms
     {
-        public string? Tense { get; init; }
-        public string? Aspirated { get; init; }
-        public string? Liquid { get; init; }
-        public string? Nasal { get; init; }
-        public string? Default { get; init; }
-        public string? Prev { get; init; }
-        public string? Next { get; init; }
-        public string? Palatalization { get; init; }
+        public char? Tense { get; init; }
+        public char? Aspirated { get; init; }
+        public char? Liquid { get; init; }
+        public char? Nasal { get; init; }
+        public char? Default { get; init; }
+        public char? Prev { get; init; }
+        public char? Next { get; init; }
+        public char? Palatalization { get; init; }
     }
 }

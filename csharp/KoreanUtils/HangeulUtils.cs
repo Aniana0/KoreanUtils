@@ -22,21 +22,21 @@ namespace KoreanUtils
         /// <summary>
         /// 입력한 글자가 한글 자모인지 확인합니다.
         /// </summary>
-        public static bool IsJamo(char character)
+        public static bool IsJamo(char? character)
         {
             return FirstJamoCode <= character && character <= LastJamoCode;
         }
         /// <summary>
         /// 입력한 글자가 한글 글자인지 확인합니다. (한글 자모 제외)
         /// </summary>
-        public static bool IsHangeul(char character)
+        public static bool IsHangeul(char? character)
         {
             return FirstHangeulCode <= character && character <= LastHangeulCode;
         }
         /// <summary>
         /// 입력한 글자가 한글인지 확인합니다. (한글 자모 포함)
         /// </summary>
-        public static bool IsHangeulOrJamo(char character)
+        public static bool IsHangeulOrJamo(char? character)
         {
             return IsJamo(character) || IsHangeul(character);
         }

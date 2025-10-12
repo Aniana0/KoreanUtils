@@ -12,10 +12,10 @@ consonant:
     - gap # 초성의 길이가 늘어날 때 공백구간이 늘어남
     - break # 종성의 길이가 늘어 날 때 공백구간이 늘어남
     forms:
-        tense: 'ㄲ'
-        aspirated: 'ㅋ'
-        default: 'ㄱ'
-        nasal: 'ㅇ'
+      tense: 'ㄲ'
+      aspirated: 'ㅋ'
+      default: 'ㄱ'
+      nasal: 'ㅇ'
   'ㄲ':
     tag:
     - choseong
@@ -26,18 +26,18 @@ consonant:
     - unvoiced
     - gap
     forms:
-        default: 'ㄱ'
-        prev: 'ㄱ'
-        next: 'ㄱ'
+      default: 'ㄱ'
+      prev: 'ㄱ'
+      next: 'ㄱ'
   'ㄳ':
     tag:
     - jongseong
     - mix
     - plain-to-tense
     forms:
-        default: 'ㄱ'
-        prev: 'ㄱ'
-        next: 'ㅅ'
+      default: 'ㄱ'
+      prev: 'ㄱ'
+      next: 'ㅅ'
   'ㄴ':
     tag:
     - choseong
@@ -50,26 +50,26 @@ consonant:
     - hold # 초성의 길이가 늘어날 때 자음 길이가 늘어남
     - keep # 종성의 길이가 늘어 날 때 받침 길이가 늘어남
     forms:
-        liquid: 'ㄹ'
-        default: 'ㄴ'
+      liquid: 'ㄹ'
+      default: 'ㄴ'
   'ㄵ':
     tag:
     - jongseong
     - mix
     - plain-to-tense
     forms:
-        default: 'ㄴ'
-        prev: 'ㄴ'
-        next: 'ㅈ'
+      default: 'ㄴ'
+      prev: 'ㄴ'
+      next: 'ㅈ'
   'ㄶ':
     tag:
     - jongseong
     - mix
     - plain-to-aspirated
     forms:
-        default: 'ㄴ'
-        prev: 'ㄴ'
-        next: 'ㅎ'
+      default: 'ㄴ'
+      prev: 'ㄴ'
+      next: 'ㅎ'
   'ㄷ':
     tag:
     - choseong
@@ -84,11 +84,11 @@ consonant:
     - gap
     - break
     forms:
-        tense: 'ㄸ'
-        aspirated: 'ㅌ'
-        default: 'ㄷ'
-        nasal: 'ㄴ'
-        palatalization: 'ㅈ'
+      tense: 'ㄸ'
+      aspirated: 'ㅌ'
+      default: 'ㄷ'
+      nasal: 'ㄴ'
+      palatalization: 'ㅈ'
   'ㄸ':
     tag:
     - choseong
@@ -109,72 +109,72 @@ consonant:
     - hold
     - keep
     forms:
-        nasal: 'ㄴ'
-        default: 'ㄹ'
+      nasal: 'ㄴ'
+      default: 'ㄹ'
   'ㄺ':
     tag:
     - jongseong
     - mix
     - plain-to-tense
     forms:
-        default: 'ㄱ'
-        prev: 'ㄹ'
-        next: 'ㄱ'
+      default: 'ㄱ'
+      prev: 'ㄹ'
+      next: 'ㄱ'
   'ㄻ':
     tag:
     - jongseong
     - mix
     forms:
-        default: 'ㅁ'
-        prev: 'ㄹ'
-        next: 'ㅁ'
+      default: 'ㅁ'
+      prev: 'ㄹ'
+      next: 'ㅁ'
   'ㄼ':
     tag:
-        - jongseong
-        - mix
-        - plain-to-tense
+      - jongseong
+      - mix
+      - plain-to-tense
     forms:
-        default: 'ㅂ'
-        prev: 'ㄹ'
-        next: 'ㅂ'
+      default: 'ㅂ'
+      prev: 'ㄹ'
+      next: 'ㅂ'
   'ㄽ':
     tag:
-        - jongseong
-        - mix
-        - plain-to-tense
+      - jongseong
+      - mix
+      - plain-to-tense
     forms:
-        default: 'ㄹ'
-        prev: 'ㄹ'
-        next: 'ㄽ'
+      default: 'ㄹ'
+      prev: 'ㄹ'
+      next: 'ㄽ'
   'ㄾ':
     tag:
-        - jongseong
-        - mix
-        - plain-to-tense
-        - palatalization
+      - jongseong
+      - mix
+      - plain-to-tense
+      - palatalization
     forms:
-        default: 'ㄹ'
-        prev: 'ㄹ'
-        next: 'ㅌ'
-        palatalization: 'ㅊ'
+      default: 'ㄹ'
+      prev: 'ㄹ'
+      next: 'ㅌ'
+      palatalization: 'ㅊ'
   'ㄿ':
     tag:
     - jongseong
     - mix
     - plain-to-tense
     forms:
-        default: 'ㅂ'
-        prev: 'ㄹ'
-        next: 'ㅍ'
+      default: 'ㅂ'
+      prev: 'ㄹ'
+      next: 'ㅍ'
   'ㅀ':
     tag:
     - jongseong
     - mix
     - plain-to-aspirated
     forms:
-        default: 'ㄹ'
-        prev: 'ㄹ'
-        next: 'ㅎ'
+      default: 'ㄹ'
+      prev: 'ㄹ'
+      next: 'ㅎ'
   'ㅁ':
     tag:
     - choseong
@@ -201,10 +201,10 @@ consonant:
     - gap
     - break
     forms:
-        tense: 'ㅃ'
-        aspirated: 'ㅍ'
-        default: 'ㅂ'
-        nasal: 'ㅁ'
+      tense: 'ㅃ'
+      aspirated: 'ㅍ'
+      default: 'ㅂ'
+      nasal: 'ㅁ'
   'ㅃ':
     tag:
     - choseong
@@ -218,9 +218,9 @@ consonant:
     - mix
     - plain-to-tense
     forms:
-        default: 'ㅂ'
-        prev: 'ㅂ'
-        next: 'ㅅ'
+      default: 'ㅂ'
+      prev: 'ㅂ'
+      next: 'ㅅ'
   'ㅅ':
     tag:
     - choseong
@@ -231,8 +231,9 @@ consonant:
     - unvoiced
     - hold
     forms:
-        tense: 'ㅆ'
-        default : 'ㄷ'
+      tense: 'ㅆ'
+      aspirated: 'ㅆ'
+      default : 'ㄷ'
   'ㅆ':
     tag:
     - choseong
@@ -243,9 +244,9 @@ consonant:
     - unvoiced
     - hold
     forms:
-        default: 'ㄷ'
-        prev: 'ㅅ'
-        next: 'ㅅ'
+      default: 'ㄷ'
+      prev: 'ㅅ'
+      next: 'ㅅ'
   'ㅇ':
     tag:
     - choseong
@@ -256,7 +257,7 @@ consonant:
     - voiced
     - keep
     forms:
-        default: 'ㅇ'
+      default: 'ㅇ'
   'ㅈ':
     tag:
     - choseong
@@ -268,9 +269,9 @@ consonant:
     - del-y
     - gap
     forms:
-        tense: 'ㅉ'
-        aspirated: 'ㅊ'
-        default: 'ㄷ'
+      tense: 'ㅉ'
+      aspirated: 'ㅊ'
+      default: 'ㄷ'
   'ㅉ':
     tag:
     - choseong
@@ -290,7 +291,7 @@ consonant:
     - del-y
     - gap
     forms:
-    default: 'ㄷ'
+      default: 'ㄷ'
   'ㅋ':
     tag:
     - choseong
@@ -301,7 +302,7 @@ consonant:
     - unvoiced
     - gap
     forms:
-        default: 'ㄱ'
+      default: 'ㄱ'
   'ㅌ':
     tag:
     - choseong
@@ -313,8 +314,8 @@ consonant:
     - unvoiced
     - gap
     forms:
-        default: 'ㄷ'
-        palatalization: 'ㅊ'
+      default: 'ㄷ'
+      palatalization: 'ㅊ'
   'ㅍ':
     tag:
     - choseong
@@ -325,7 +326,7 @@ consonant:
     - unvoiced
     - gap
     forms:
-        default: 'ㅂ'
+      default: 'ㅂ'
   'ㅎ':
     tag:
     - choseong
@@ -337,7 +338,7 @@ consonant:
     - unvoiced
     - hold
     forms:
-        default: 'ㄷ'
+      default: 'ㄷ'
 vowel:
   'ㅏ':
     main_vowel: 'ㅏ'

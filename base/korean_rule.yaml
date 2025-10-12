@@ -5,7 +5,7 @@ exception_jongseong11:
 forced_jungseong7:
 - '예'
 - '례'
-rule15_vowels:
+vowels_rule15:
 - 'ㅏ'
 - 'ㅓ'
 - 'ㅗ'
