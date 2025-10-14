@@ -1,139 +1,152 @@
+using System.Reflection;
+
 namespace KoreanUtils
 {
     public static class KoreanManuallyG2P
     {
-        private static readonly ExceptionWordYaml _exceptionWordYaml;
+        private static readonly ExceptionWordYaml exceptionDict;
         private static readonly JamoPropsYaml jamoProps;
-        private static readonly KoreanRuleYaml rules;
-        private static Dictionary<string, string> ExceptionWords => _exceptionWordYaml.ExceptionWords;
+        private static readonly KoreanRuleYaml koreanRules;
+        private static Dictionary<string, string> ExceptionWords => exceptionDict.ExceptionWords;
+        private static Dictionary<char, ConsonantProps> CProps => jamoProps.Consonant;
+        private static Dictionary<char, VowelProps> VProps => jamoProps.Vowel;
+        private static HashSet<string> ExceptionLB => koreanRules.ExceptionJongseong11;
 
         static KoreanManuallyG2P()
         {
             try
             {
-                _exceptionWordYaml = BaseDataLoader.LoadBaseYaml<ExceptionWordYaml>("KoreanUtils.exception_word.yaml");
-                jamoProps = BaseDataLoader.LoadBaseYaml<JamoPropsYaml>("KoreanUtils.jamo_propertie.yaml");
-                rules = BaseDataLoader.LoadBaseYaml<KoreanRuleYaml>("KoreanUtils.korean_rule.yaml");
-                if (_exceptionWordYaml == null || jamoProps == null) throw new Exception($"Load Failed : Exception Words is null");
+                foreach (var name in Assembly.GetExecutingAssembly().GetManifestResourceNames())
+                Console.WriteLine(name);
+                exceptionDict = BaseDataLoader.LoadBaseData<ExceptionWordYaml>("KoreanUtils.exception_words.yaml");
+                jamoProps = BaseDataLoader.LoadBaseData<JamoPropsYaml>("KoreanUtils.jamo_properties.yaml");
+                koreanRules = BaseDataLoader.LoadBaseData<KoreanRuleYaml>("KoreanUtils.korean_rules.yaml");
+                if (exceptionDict == null || jamoProps == null) throw new Exception($"Load Failed : Exception Words is null");
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine($"Load Failed : Exception Words, {ex}");
+                Console.Error.WriteLine($"[Load Failed] {ex}");
                 throw;
             }
         }
 
-        public static (string result, string? matchWord, int? matchIndex) G2pFromException(string text, int targetStartIndex, int targetLenth = 1, Dictionary<string, string>? ExceptionDict = null)
+        //  예외 단어 판별
+        public static string ApplyExceptionDict(string text, Dictionary<string, string>? ExceptionDict = null)
         {
             ExceptionDict ??= ExceptionWords;
-            int targetEndIndex = targetStartIndex + targetLenth;
-            foreach (string word in ExceptionDict.Keys)
-            {
-                int sliceStartIndex = targetEndIndex - (word.Length - 1);
-                int sliceEndIndex = targetStartIndex + (word.Length - 1);
-                if (sliceStartIndex < 0) sliceStartIndex = 0;
-                if (sliceEndIndex > text.Length) sliceEndIndex = text.Length;
-                if (targetEndIndex > sliceEndIndex) continue;
-                string textSelection = text[sliceStartIndex..sliceEndIndex];
-                if (textSelection.Contains(word))
-                {
-                    int targetIndexOfWord = targetStartIndex - textSelection.IndexOf(word);
-                    return (ExceptionDict[word][targetIndexOfWord..(targetIndexOfWord + targetLenth)], word, targetIndexOfWord);
-                }
-            }
-            return (text[targetStartIndex..targetEndIndex], null, null);
+            string convertText = text;
+            foreach (var word in ExceptionDict.Keys.OrderByDescending(k => k.Length)) convertText = convertText.Replace(word, ExceptionDict[word]);
+            return convertText ?? text;
         }
 
-        public static char CharG2p(char character, string? prev="", string? next="")
+        private static char ProcessChoseong(char currChoseong, char prevJongseong, HashSet<string> currChoseongTags, ConsonantForms? currChoseongForms, char currJungseong)
         {
-            if (!HangeulUtils.IsHangeul(character)) return character;
-            // 예외 단어면 사전에 등록된 발음 적용
-            var (result, matchWord, matchIndex) = prev != null ? G2pFromException($"{prev}{character}{next}", prev.Length) : G2pFromException($"{character}{next}", 0);
-            bool isExceptionWord = matchWord != null;
-            if (isExceptionWord && matchIndex != 0 && matchIndex != matchWord?.Length) return result[0];
-            
-            bool isStartOfExceptionWord = isExceptionWord && matchIndex == 0;
-            bool isEndOfExceptionWord = isExceptionWord && matchIndex == matchWord?.Length;
+            char prevSound = CProps[prevJongseong].Forms?.Default ?? throw new Exception($"[Jamo Props Error] : {prevJongseong} has no default form.");
 
+            var prevTags = CProps[prevJongseong].Tag;
+            var prevForms = CProps[prevJongseong].Forms;
+            var prevSoundTags = CProps[prevSound].Tag;
+            var prevSoundForms = CProps[prevSound].Forms;
+
+            return currChoseong switch
+            {
+                'ㄴ' when prevSoundTags.Contains("n-to-l") => prevForms?.Liquid,
+                'ㄹ' when prevSoundTags.Contains("l-to-n") => prevForms?.Nasal,
+                _ when currChoseongTags.Contains("plain") => prevTags switch
+                {
+                    var tags when tags.Contains("plain-to-tense") => currChoseongForms?.Tense,
+                    var tags when tags.Contains("plain-to-aspirated") => currChoseongForms?.Aspirated,
+                    _ => currChoseong
+                },
+                _ when currChoseongTags.Contains("silent") => prevTags switch
+                {
+                    var tags when currJungseong == 'ㅣ' && tags.Contains("palatalization") => prevForms?.Palatalization,
+                    var tags when tags.Contains("single") || tags.Contains("double") => prevJongseong,
+                    var tags when tags.Contains("mix") => prevForms?.Next == 'ㅅ' ? 'ㅆ' : prevForms?.Next,
+                    _ => currChoseong
+                },
+                'ㅎ' => prevTags switch
+                {
+                    var tags when currJungseong == 'ㅣ' && tags.Contains("palatalization") => 'ㅊ',
+                    var tags when tags.Contains("single") && prevSoundTags.Contains("plain") => prevSoundForms?.Aspirated,
+                    var tags when tags.Contains("double") || tags.Contains("mix") => prevForms?.Next != null ? CProps[prevForms.Next.Value].Forms?.Aspirated : throw new Exception($"[Jamo Props Error] : {prevJongseong} has no next form."),
+                    _ => currChoseong
+                },
+                _ => currChoseong
+            } ?? currChoseong;
+        }
+
+        private static char ProcessJungseong(char currJungseong, HashSet<string> currChoseongTags, HashSet<string> currJungseongTags, char currJungseongVowel)
+        {
+            return currJungseong switch
+            {
+                'ㅢ' when !currChoseongTags.Contains("silent") => 'ㅣ',
+                _ when currJungseongTags.Contains("group-y") && currChoseongTags.Contains("del-y") => currJungseongVowel,
+                _ => currJungseong
+            };
+        }
+        
+        private static char? ProcessJongseong(char? nextChoseong, char currJongseong, char currChar, char? nextChar)
+        {
+            var currJongseongTags = CProps[currJongseong].Tag;
+            var currJongseongForms = CProps[currJongseong].Forms;
+            var nextTags = nextChoseong != null ? CProps[nextChoseong.Value].Tag : null;
+
+            // 밟, 넓 확인
+            string currPair = $"{currChar}{nextChar}";
+            if (ExceptionLB.Contains(currPair) || ExceptionLB.Contains(currChar.ToString())) currJongseong = 'ㅂ';
+
+            if (nextTags != null)
+            {
+                bool isJoinAspirated = (currJongseong == 'ㅎ' && nextTags.Contains("plain")) || (currJongseongTags.Contains("single") && nextChoseong == 'ㅎ');
+                bool isJoinPlain = currJongseong == nextChoseong && nextTags.Contains("plain");
+                bool isMoveNext = (currJongseongTags.Contains("single") || currJongseongTags.Contains("double") || currJongseongTags.Contains("plain-to-aspirated")) && nextTags.Contains("silent");
+                bool isDeleteJongseong = isJoinAspirated || isJoinPlain || isMoveNext;
+
+                if (isDeleteJongseong) return null;
+                else if (currJongseongTags.Contains("mix") && (nextChoseong == 'ㅇ' || nextChoseong == 'ㅎ')) currJongseong = currJongseongForms?.Prev ?? currJongseong;
+                
+                currJongseong = currJongseongForms?.Default ?? throw new Exception($"[Jamo Props Error] : {currJongseong} has no default form.");
+                currJongseongForms = CProps[currJongseong].Forms;
+                
+                if (nextTags.Contains("jongseong-to-nasal")) currJongseong = currJongseongForms?.Nasal ?? currJongseong;
+                if (currJongseong == 'ㄴ' && nextTags.Contains("n-to-l")) currJongseong = currJongseongForms?.Liquid ?? currJongseong;
+            }
+
+            return CProps[currJongseong].Forms?.Default;
+        }
+
+        public static char CharG2p(char currChar, string? prevText="", string? nextText="")
+        {
             // 자모 분리
-            char originChar = result[0];
-            var originJamo = HangeulUtils.ToJamo(originChar);
+            var currJamo = HangeulUtils.ToJamo(currChar);
+            if (currJamo == null) return currChar;
 
-            if (originJamo == null) return character;
-            
             // 앞 뒤 한 글자만 남기기
-            char? prevChar = null;
-            char? nextChar = null;
-            if (!isStartOfExceptionWord && prev?.Length > 0) prevChar = prev[^1];
-            if (!isEndOfExceptionWord && next?.Length > 0) nextChar = next[0];
-            var prevJamo = prevChar != null && HangeulUtils.IsHangeul(prevChar) ? HangeulUtils.ToJamo(prevChar.Value) : null;
-            var nextJamo = nextChar != null && HangeulUtils.IsHangeul(nextChar) ? HangeulUtils.ToJamo(nextChar.Value) : null;
+            char? prevChar = prevText?.Length > 0 ? prevText[^1] : null;
+            char? nextChar = nextText?.Length > 0 ? nextText[0] : null;
+            var prevJamo = prevChar != null ? HangeulUtils.ToJamo(prevChar.Value) : null;
+            var nextJamo = nextChar != null ? HangeulUtils.ToJamo(nextChar.Value) : null;
 
-            char currStartC = originJamo.Value.Choseong;
-            char currV = originJamo.Value.Jungseong;
-            char? currFinalC = originJamo?.Jongseong;
+            char currChoseong = currJamo.Value.Choseong;
+            char currJungseong = currJamo.Value.Jungseong;
+            char? currJongseong = currJamo?.Jongseong;
+
+            var currChoseongTags = CProps[currChoseong].Tag;
+            var currChoseongForms = CProps[currChoseong].Forms;
+            var currJungseongTags = VProps[currJungseong].Tag;
+            var currJungseongVowel = VProps[currJungseong].MainVowel;
 
             // 초성 작업 시작
-            if (prevJamo?.Jongseong != null)
-            {
-                char prevC = prevJamo.Value.Jongseong.Value;
-                char prevCSound = jamoProps.Consonant[prevC]?.Forms?.Default ?? prevC;
-
-                var currTags = jamoProps.Consonant[currStartC].Tag;
-                var currForms = jamoProps.Consonant[currStartC].Forms;
-                var prevTags = jamoProps.Consonant[prevC].Tag;
-                var prevForms = jamoProps.Consonant[prevC].Forms;
-                var prevSoundTags = jamoProps.Consonant[prevCSound].Tag;
-                var prevSoundForms = jamoProps.Consonant[prevCSound].Forms;
-
-                if (prevSoundTags.Contains("n-to-l") && currStartC == 'ㄴ') currStartC = prevForms?.Liquid ?? currStartC;
-                else if (prevSoundTags.Contains("l-to-n") && currStartC == 'ㄹ') currStartC = prevForms?.Nasal ?? currStartC;
-                else if (currTags.Contains("plain"))
-                {
-                    if (prevSoundTags.Contains("plain-to-tense")) currStartC = currForms?.Tense ?? currStartC;
-                    else if (prevSoundTags.Contains("plain-to-aspirated")) currStartC = currForms?.Aspirated ?? currStartC;
-                }
-                else if (currTags.Contains("silent"))
-                {
-                    if (prevSoundTags.Contains("single") || prevSoundTags.Contains("double")) currStartC = prevC;
-                    else if (prevSoundTags.Contains("mix")) currStartC = prevForms?.Next == 'ㅅ' ? 'ㅆ' : prevForms?.Next ?? currStartC;
-                    if (currV == 'ㅣ' && prevTags.Contains("palatalization")) currStartC = prevForms?.Palatalization ?? currStartC;
-                }
-                else if (currStartC == 'ㅎ')
-                {
-                    if (prevTags.Contains("double") || prevSoundTags.Contains("mix")) currStartC = prevForms?.Next != null ? jamoProps.Consonant[prevForms.Next.Value].Forms?.Aspirated ?? currStartC : currStartC;
-                    else if (prevTags.Contains("single") && prevSoundTags.Contains("plain")) currStartC = prevSoundForms?.Aspirated ?? currStartC;
-                    if (currV == 'ㅣ' && prevTags.Contains("palatalization")) currStartC = 'ㅊ';
-                }
-            }
-
+            if (prevJamo?.Jongseong != null) currChoseong = ProcessChoseong(currChoseong, prevJamo.Value.Jongseong.Value, currChoseongTags, currChoseongForms, currJungseong);
+            
             // 중성 작업 시작
-            if (!jamoProps.Consonant[currStartC].Tag.Contains("silent") && currV == 'ㅢ') currV = 'ㅣ';
-            else if (jamoProps.Consonant[currStartC].Tag.Contains("del-y") && jamoProps.Vowel[currV].Tag.Contains("group-y")) currV = jamoProps.Vowel[currV].MainVowel;
+            currJungseong = ProcessJungseong(currJungseong, currChoseongTags, currJungseongTags, currJungseongVowel);
 
             // 종성 작업 시작
-            if (currFinalC != null && nextJamo?.Choseong != null)
-            {
-                char currC = currFinalC.Value;
-                char nextC = nextJamo.Value.Choseong;
-                var currTags = jamoProps.Consonant[currC].Tag;
-                var currForms = jamoProps.Consonant[currC].Forms;
-                var nextTags = jamoProps.Consonant[nextC].Tag;
-                // 밟, 넓 확인
-                foreach (string filter in rules.ExceptionJongseong11)
-                {
-                    if ($"{originChar}{nextChar}" == filter || $"{originChar}" == filter) currFinalC = 'ㅂ';
-                }
-                bool isNextPlain = (currC == nextC || currC == 'ㅎ') && nextTags.Contains("plain");
-                bool isMove = (currTags.Contains("single") || currTags.Contains("double") || currC == 'ㅀ' || currC == 'ㄶ') && nextTags.Contains("silent");
-                bool isMixH = currTags.Contains("single") && nextC == 'ㅎ';
-                if (isNextPlain || isMove || isMixH) currFinalC = null;
-                else if (currTags.Contains("mix") && (nextC == 'ㅇ' || nextC == 'ㅎ')) currFinalC = currForms?.Prev;
-                else currFinalC = currForms?.Default;
-                if (currFinalC != null && nextTags.Contains("jongseong-to-nasal")) currFinalC = jamoProps.Consonant[currFinalC.Value].Forms?.Nasal;
-                if (currFinalC == 'ㄴ' && nextC == 'ㄹ') currFinalC = jamoProps.Consonant[currFinalC.Value].Forms?.Liquid;
-            }
-            return HangeulUtils.ToHangeulChar(currStartC, currV, currFinalC) ?? character;
+            if (currJongseong != null) currJongseong = ProcessJongseong(nextJamo?.Choseong, currJongseong.Value, currChar, nextChar);
+
+            return HangeulUtils.ToHangeulChar(currChoseong, currJungseong, currJongseong) ?? currChar;
         }
     }
 }

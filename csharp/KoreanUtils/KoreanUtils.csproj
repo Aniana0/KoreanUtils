@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\..\base\exception_word.yaml" />
-    <EmbeddedResource Include="..\..\base\jamo_propertie.yaml" />
-    <EmbeddedResource Include="..\..\base\korean_rule.yaml" />
+    <EmbeddedResource Include="..\..\base\**\*" />
     <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 
