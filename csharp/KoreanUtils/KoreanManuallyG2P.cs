@@ -116,15 +116,13 @@ namespace KoreanUtils
             return CProps[currJongseong].Forms?.Default;
         }
 
-        public static char CharG2p(char currChar, string? prevText="", string? nextText="")
+        public static char CharG2p(char currChar, char? prevChar = null, char? nextChar = null)
         {
             // 자모 분리
             var currJamo = HangeulUtils.ToJamo(currChar);
             if (currJamo == null) return currChar;
 
             // 앞 뒤 한 글자만 남기기
-            char? prevChar = prevText?.Length > 0 ? prevText[^1] : null;
-            char? nextChar = nextText?.Length > 0 ? nextText[0] : null;
             var prevJamo = prevChar != null ? HangeulUtils.ToJamo(prevChar.Value) : null;
             var nextJamo = nextChar != null ? HangeulUtils.ToJamo(nextChar.Value) : null;
 
