@@ -1,34 +1,11 @@
-using System.Reflection;
-
 namespace KoreanUtils
 {
     public static class KoreanManuallyG2P
     {
-        private static readonly ExceptionWordYaml exceptionDict;
-        private static readonly JamoPropsYaml jamoProps;
-        private static readonly KoreanRuleYaml koreanRules;
-        private static Dictionary<string, string> ExceptionWords => exceptionDict.ExceptionWords;
-        private static Dictionary<char, ConsonantProps> CProps => jamoProps.Consonant;
-        private static Dictionary<char, VowelProps> VProps => jamoProps.Vowel;
-        private static HashSet<string> ExceptionLB => koreanRules.ExceptionJongseong11;
-
-        static KoreanManuallyG2P()
-        {
-            try
-            {
-                foreach (var name in Assembly.GetExecutingAssembly().GetManifestResourceNames())
-                Console.WriteLine(name);
-                exceptionDict = BaseDataLoader.LoadBaseData<ExceptionWordYaml>("KoreanUtils.exception_words.yaml");
-                jamoProps = BaseDataLoader.LoadBaseData<JamoPropsYaml>("KoreanUtils.jamo_properties.yaml");
-                koreanRules = BaseDataLoader.LoadBaseData<KoreanRuleYaml>("KoreanUtils.korean_rules.yaml");
-                if (exceptionDict == null || jamoProps == null) throw new Exception($"Load Failed : Exception Words is null");
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine($"[Load Failed] {ex}");
-                throw;
-            }
-        }
+        public static Dictionary<string, string> ExceptionWords => BaseDatas.ExceptionWords;
+        public static Dictionary<char, ConsonantProps> CProps => BaseDatas.CProps;
+        public static Dictionary<char, VowelProps> VProps => BaseDatas.VProps;
+        public static HashSet<string> ExceptionLB => BaseDatas.ExceptionLB;
 
         //  예외 단어 판별
         public static string ApplyExceptionDict(string text, Dictionary<string, string>? ExceptionDict = null)
