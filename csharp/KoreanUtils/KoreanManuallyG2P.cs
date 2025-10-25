@@ -93,11 +93,11 @@ namespace KoreanUtils
             return CProps[currJongseong].Forms?.Default;
         }
 
-        public static char CharG2p(char currChar, char? prevChar = null, char? nextChar = null)
+        public static (char Character, (char Choseong, char Jungseong, char? Jongseong)?) CharG2p(char currChar, char? prevChar = null, char? nextChar = null)
         {
             // 자모 분리
             var currJamo = HangeulUtils.ToJamo(currChar);
-            if (currJamo == null) return currChar;
+            if (currJamo == null) return (currChar, null);
 
             // 앞 뒤 한 글자만 남기기
             var prevJamo = prevChar != null ? HangeulUtils.ToJamo(prevChar.Value) : null;
@@ -121,7 +121,9 @@ namespace KoreanUtils
             // 종성 작업 시작
             if (currJongseong != null) currJongseong = ProcessJongseong(nextJamo?.Choseong, currJongseong.Value, currChar, nextChar);
 
-            return HangeulUtils.ToHangeulChar(currChoseong, currJungseong, currJongseong) ?? currChar;
+            currChar = HangeulUtils.ToHangeulChar(currChoseong, currJungseong, currJongseong) ?? currChar;
+
+            return (currChar, (currChoseong, currJungseong, currJongseong));
         }
     }
 }
