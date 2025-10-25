@@ -342,16 +342,19 @@ consonant:
 vowel:
   'ㅏ':
     main_vowel: 'ㅏ'
+    end_vowel: 'ㅏ'
     tag:
     - single
   'ㅐ':
     main_vowel: 'ㅐ'
+    end_vowel: 'ㅐ'
     tag:
     - single
     - group-e
   'ㅑ':
     main_vowel: 'ㅏ'
     semi_vowel: 'ㅣ'
+    end_vowel: 'ㅏ'
     tag:
     - double
     - semi-vowel
@@ -360,6 +363,7 @@ vowel:
   'ㅒ':
     main_vowel: 'ㅐ'
     semi_vowel: 'ㅣ'
+    end_vowel: 'ㅐ'
     tag:
     - double
     - semi-vowel
@@ -368,16 +372,19 @@ vowel:
     - palatalization
   'ㅓ':
     main_vowel: 'ㅓ'
+    end_vowel: 'ㅓ'
     tag:
     - single
   'ㅔ':
     main_vowel: 'ㅔ'
+    end_vowel: 'ㅔ'
     tag:
     - single
     - group-e
   'ㅕ':
     main_vowel: 'ㅓ'
     semi_vowel: 'ㅣ'
+    end_vowel: 'ㅓ'
     tag:
     - double
     - semi-vowel
@@ -386,6 +393,7 @@ vowel:
   'ㅖ':
     main_vowel: 'ㅔ'
     semi_vowel: 'ㅣ'
+    end_vowel: 'ㅔ'
     tag:
     - double
     - semi-vowel
@@ -394,12 +402,14 @@ vowel:
     - palatalization
   'ㅗ':
     main_vowel: 'ㅗ'
+    end_vowel: 'ㅗ'
     tag:
     - single
     - labialization
   'ㅘ':
     main_vowel: 'ㅏ'
     semi_vowel: 'ㅗ'
+    end_vowel: 'ㅏ'
     tag:
     - double
     - semi-vowel
@@ -408,6 +418,7 @@ vowel:
   'ㅙ':
     main_vowel: 'ㅐ'
     semi_vowel: 'ㅗ'
+    end_vowel: 'ㅐ'
     tag:
     - double
     - semi-vowel
@@ -418,6 +429,7 @@ vowel:
     main_vowel: 'ㅚ'
     semi_vowel: 'ㅗ'
     hold_vowel: 'ㅐ'
+    end_vowel: 'ㅚ'
     tag:
     - single
     - double
@@ -428,6 +440,7 @@ vowel:
   'ㅛ':
     main_vowel: 'ㅗ'
     semi_vowel: 'ㅟ'
+    end_vowel: 'ㅗ'
     tag:
     - double
     - semi-vowel
@@ -436,12 +449,14 @@ vowel:
     - labialization
   'ㅜ':
     main_vowel: 'ㅜ'
+    end_vowel: 'ㅜ'
     tag:
     - single
     - labialization
   'ㅝ':
     main_vowel: 'ㅓ'
     semi_vowel: 'ㅜ'
+    end_vowel: 'ㅓ'
     tag:
     - double
     - semi-vowel
@@ -450,6 +465,7 @@ vowel:
   'ㅞ':
     main_vowel: 'ㅔ'
     semi_vowel: 'ㅜ'
+    end_vowel: 'ㅔ'
     tag:
     - double
     - semi-vowel
@@ -460,6 +476,7 @@ vowel:
     main_vowel: 'ㅟ'
     semi_vowel: 'ㅟ'
     hold_vowel: 'ㅣ'
+    end_vowel: 'ㅟ'
     tag:
     - single
     - double
@@ -470,6 +487,7 @@ vowel:
   'ㅠ':
     main_vowel: 'ㅜ'
     semi_vowel: 'ㅟ'
+    end_vowel: 'ㅜ'
     tag:
     - double
     - semi-vowel
@@ -478,16 +496,19 @@ vowel:
     - labialization
   'ㅡ':
     main_vowel: 'ㅡ'
+    end_vowel: 'ㅡ'
     tag:
     - single
   'ㅢ':
     main_vowel: 'ㅡ'
     semi_vowel: 'ㅣ'
+    end_vowel: 'ㅣ'
     tag:
     - double
     - vowel-semi
   'ㅣ':
     main_vowel: 'ㅣ'
+    end_vowel: 'ㅣ'
     tag:
     - single
     - palatalization
