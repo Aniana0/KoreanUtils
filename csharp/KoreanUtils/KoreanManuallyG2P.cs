@@ -93,7 +93,7 @@ namespace KoreanUtils
             return CProps[currJongseong].Forms?.Default;
         }
 
-        public static (char Character, (char Choseong, char Jungseong, char? Jongseong)?) CharG2p(char currChar, char? prevChar = null, char? nextChar = null)
+        public static (char Character, (char Choseong, char Jungseong, char? Jongseong)? Jamo) CharG2p(char currChar, char? prevChar = null, char? nextChar = null)
         {
             // 자모 분리
             var currJamo = HangeulUtils.ToJamo(currChar);
