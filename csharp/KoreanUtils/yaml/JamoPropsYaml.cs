@@ -21,8 +21,8 @@ namespace KoreanUtils
         public char MainVowel { get; init; }
         public char? SemiVowel { get; init; }
         public char? HoldVowel { get; init; }
-        public char? EndVowel { get; init; }
-        public HashSet<string> Tag { get; init; } = new();
+        public char EndVowel { get; init; }
+        public HashSet<string> Tag { get; init; } = [];
     }
     
     public class ConsonantForms
