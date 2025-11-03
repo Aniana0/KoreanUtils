@@ -19,6 +19,13 @@ namespace KoreanUtils
         private static readonly char[] JungseongArr = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
         private static readonly char[] JongseongArr = ['\0', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
         
+        public static bool HasJongseong(char character, out char? jongseong)
+        {
+            var jamo = ToJamo(character);
+            jongseong = jamo?.Jongseong;
+            return jongseong != null ? true : false;
+        }
+
         /// <summary>
         /// 입력한 글자가 한글 자모인지 확인합니다.
         /// </summary>
